@@ -1,14 +1,20 @@
 <html>
   <head>
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
+
+    <!-- Firebase Firestore SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-firestore.js"></script>
+
+    <!-- Firebase Authentication SDK (if needed) -->
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js"></script>
+
     <base href="" />
     <meta charset="utf-8" />
     <meta name="description" content="" />
     <title></title>
 
     <style>
-      label.field-label.hidden-but-accessible {
-      }
-
       .comments .field-label {
         display: none !important;
       }
@@ -685,7 +691,7 @@
       type="text/css"
       href="https://www2.ttec.com/css/form.css?ver=2021-09-20"
     />
-    <script type="text/javascript" src="https://www2.ttec.com/pd.js"></script>
+
     <script
       type="text/javascript"
       src="https://www2.ttec.com/js/piUtils.js?ver=2021-09-20"
@@ -735,13 +741,7 @@
     ></script>
   </head>
   <body>
-    <form
-      accept-charset="UTF-8"
-      method="post"
-      action="https://www2.ttec.com/l/19832/2017-03-01/2vflhkv"
-      class="form"
-      id="pardot-form"
-    >
+    <form id="contact-form" class="form">
       <style type="text/css">
         form.form p label {
           color: #000000;
@@ -870,7 +870,7 @@
         <input
           type="text"
           name="19832_109605pi_19832_109605"
-          id="19832_109605pi_19832_109605"
+          id="firstname"
           value=""
           class="text"
           size="30"
@@ -895,7 +895,7 @@
         <input
           type="text"
           name="19832_109607pi_19832_109607"
-          id="19832_109607pi_19832_109607"
+          id="lastname"
           value=""
           class="text"
           size="30"
@@ -911,22 +911,15 @@
       ></div>
 
       <p class="form-field email pd-text required">
-        <label
-          class="field-label hidden-but-accessible"
-          for="19832_109609pi_19832_109609"
+        <label class="field-label hidden-but-accessible" for="email"
           >Business Email*</label
         >
 
         <input
           type="text"
-          name="19832_109609pi_19832_109609"
-          id="19832_109609pi_19832_109609"
-          value=""
+          name="email"
+          id="email"
           class="text"
-          size="30"
-          maxlength="255"
-          onchange=""
-          onfocus=""
           placeholder="Business Email*"
         />
       </p>
@@ -936,16 +929,14 @@
       ></div>
 
       <p class="form-field company pd-text required">
-        <label
-          class="field-label hidden-but-accessible"
-          for="19832_109615pi_19832_109615"
+        <label class="field-label hidden-but-accessible" for="company"
           >Company*</label
         >
 
         <input
           type="text"
-          name="19832_109615pi_19832_109615"
-          id="19832_109615pi_19832_109615"
+          name="company"
+          id="company"
           value=""
           class="text"
           size="30"
@@ -955,10 +946,7 @@
           placeholder="Company*"
         />
       </p>
-      <div
-        id="error_for_19832_109615pi_19832_109615"
-        style="display: none"
-      ></div>
+      <div id="error_for_company" style="display: none"></div>
 
       <p
         class="form-field job_title pd-text required form-field-secondary dependentFieldSlave dependentField"
@@ -988,16 +976,14 @@
       ></div>
 
       <p class="form-field phone pd-text">
-        <label
-          class="field-label hidden-but-accessible"
-          for="19832_109611pi_19832_109611"
+        <label class="field-label hidden-but-accessible" for="phone"
           >Phone</label
         >
 
         <input
           type="text"
-          name="19832_109611pi_19832_109611"
-          id="19832_109611pi_19832_109611"
+          name="phone"
+          id="phone"
           value=""
           class="text"
           size="30"
@@ -1007,11 +993,31 @@
           placeholder="Phone"
         />
       </p>
+      <div id="error_for_phone" style="display: none"></div>
+      <p class="form-field last_name pd-text required">
+        <label
+          class="field-label hidden-but-accessible"
+          for="19832_109607pi_19832_109607"
+          >Address(Street, City, State)*</label
+        >
+
+        <input
+          type="text"
+          name="19832_109607pi_19832_109607"
+          id="address"
+          value=""
+          class="text"
+          size="30"
+          maxlength="80"
+          onchange=""
+          onfocus=""
+          placeholder="Address(Street, City, State)*"
+        />
+      </p>
       <div
-        id="error_for_19832_109611pi_19832_109611"
+        id="error_for_19832_109607pi_19832_109607"
         style="display: none"
       ></div>
-
       <p class="form-field country pd-select required form-field-primary">
         <label
           class="field-label hidden-but-accessible"
@@ -1021,7 +1027,7 @@
 
         <select
           name="19832_109619pi_19832_109619"
-          id="19832_109619pi_19832_109619"
+          id="country"
           class="select"
           onchange=""
         >
@@ -1084,7 +1090,7 @@
           <option value="1091361">Curaçao</option>
           <option value="1091363">Cyprus</option>
           <option value="1091365">Czech Republic</option>
-          <option value="1091367">Côte d’Ivoire</option>
+          <option value="1091367">Côte d'Ivoire</option>
           <option value="1091369">Democratic Republic of the Congo</option>
           <option value="1091371">Denmark</option>
           <option value="1091373">Djibouti</option>
@@ -1277,15 +1283,13 @@
       ></div>
 
       <p class="form-field comments pd-textarea">
-        <label
-          class="field-label hidden-but-accessible"
-          for="19832_109623pi_19832_109623"
+        <label class="field-label hidden-but-accessible" for="comments"
           >Comments</label
         >
 
         <textarea
-          name="19832_109623pi_19832_109623"
-          id="19832_109623pi_19832_109623"
+          name="comments"
+          id="comments"
           onchange=""
           cols="40"
           rows="10"
@@ -1293,10 +1297,7 @@
           placeholder="Comments"
         ></textarea>
       </p>
-      <div
-        id="error_for_19832_109623pi_19832_109623"
-        style="display: none"
-      ></div>
+      <div id="error_for_comments" style="display: none"></div>
 
       <p class="form-field col-sm-12 CSJ_Opt_In pd-checkbox no-label">
         <span class="value"
@@ -1355,45 +1356,6 @@
         style="display: none"
       ></div>
 
-      <p class="form-field utm_medium pd-hidden hidden">
-        <input
-          type="hidden"
-          name="19832_189372pi_19832_189372"
-          id="19832_189372pi_19832_189372"
-          value=""
-        />
-      </p>
-      <div
-        id="error_for_19832_189372pi_19832_189372"
-        style="display: none"
-      ></div>
-
-      <p class="form-field utm_source pd-hidden hidden">
-        <input
-          type="hidden"
-          name="19832_189375pi_19832_189375"
-          id="19832_189375pi_19832_189375"
-          value=""
-        />
-      </p>
-      <div
-        id="error_for_19832_189375pi_19832_189375"
-        style="display: none"
-      ></div>
-
-      <p class="form-field form_embed_url pd-hidden hidden">
-        <input
-          type="hidden"
-          name="19832_189378pi_19832_189378"
-          id="19832_189378pi_19832_189378"
-          value=""
-        />
-      </p>
-      <div
-        id="error_for_19832_189378pi_19832_189378"
-        style="display: none"
-      ></div>
-
       <p
         style="
           position: absolute;
@@ -1411,226 +1373,68 @@
       <input name="_utf8" type="hidden" value="☃" />
 
       <p class="submit">
-        <input type="submit" accesskey="s" value="Contact Us" />
+        <input type="submit" value="Contact Us" />
       </p>
-
-      <script type="text/javascript">
-        //<![CDATA[
-
-        var anchors = document.getElementsByTagName("a");
-        for (var i = 0; i < anchors.length; i++) {
-          var anchor = anchors[i];
-          if (anchor.getAttribute("href") && !anchor.getAttribute("target")) {
-            anchor.target = "_top";
-          }
-        }
-
-        //]]>
-      </script>
-      <input
-        type="hidden"
-        name="hiddenDependentFields"
-        id="hiddenDependentFields"
-        value=""
-      />
     </form>
-    <script type="text/javascript">
-      (function () {
-        pardot.$(document).ready(function () {
-          (function () {
-            var $ = window.pardot.$;
-            window.pardot.FormDependencyMap = [
-              {
-                primary_field_html_id: "19832_109629pi_19832_109629",
-                secondary_field_html_id: "19832_118305pi_19832_118305",
-                primary_field_value:
-                  "Employment or employment verification;Employment or employment verification",
-              },
-              {
-                primary_field_html_id: "19832_109629pi_19832_109629",
-                secondary_field_html_id: "19832_123822pi_19832_123822",
-                primary_field_value:
-                  "Becoming a partner or supplier;Becoming a partner or supplier",
-              },
-              {
-                primary_field_html_id: "19832_109629pi_19832_109629",
-                secondary_field_html_id: "19832_109613pi_19832_109613",
-                primary_field_value:
-                  "TTEC products and services;TTEC products and services",
-              },
-              {
-                primary_field_html_id: "19832_109629pi_19832_109629",
-                secondary_field_html_id: "19832_109617pi_19832_109617",
-                primary_field_value:
-                  "TTEC products and services;TTEC products and services",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Australia",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Austria",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Belgium",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Bulgaria",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Canada",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Croatia",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Cyprus",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Czech Republic",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Denmark",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Estonia",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Finland",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "France",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Germany",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Greece",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Hungary",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Italy",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Latvia",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Lithuania",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Luxembourg",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Malta",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Netherlands",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "New Zealand",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Poland",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Portugal",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Romania",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Slovakia",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Slovenia",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Spain",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "Sweden",
-              },
-              {
-                primary_field_html_id: "19832_109629pi_19832_109629",
-                secondary_field_html_id: "19832_131881pi_19832_131881",
-                primary_field_value:
-                  "Becoming a partner or supplier;Becoming a partner or supplier",
-              },
-              {
-                primary_field_html_id: "19832_109619pi_19832_109619",
-                secondary_field_html_id: "19832_127018pi_19832_127018",
-                primary_field_value: "United Kingdom",
-              },
-            ];
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+        serverTimestamp,
+      } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyAwWtd7WjLwCKTlkSNxrEitTua4wfc-Pws",
+        authDomain: "ambition-93ed1.firebaseapp.com",
+        projectId: "ambition-93ed1",
+        storageBucket: "ambition-93ed1.appspot.com",
+        messagingSenderId: "160579760732",
+        appId: "1:160579760732:web:1cc2e2574db7755e242c99",
+        measurementId: "G-30YHYMBWEF",
+      };
 
-            $(".form-field-primary input, .form-field-primary select").each(
-              function (index, input) {
-                $(input).on("change", window.piAjax.checkForDependentField);
-                window.piAjax.checkForDependentField.call(input);
-              }
-            );
-          })();
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.querySelector("#contact-form");
+
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const firstname = document.querySelector("#firstname").value;
+          const lastname = document.querySelector("#lastname").value;
+          const email = document.querySelector("#email").value;
+          const company = document.querySelector("#company").value;
+          const phone = document.querySelector("#phone").value;
+          const address = document.querySelector("#address").value;
+          const country = document.querySelector("#country").value;
+          const comments = document.querySelector("#comments").value;
+
+          try {
+            await addDoc(collection(db, "formSubmissions"), {
+              firstname,
+              lastname,
+              email,
+              company,
+              phone,
+              address,
+              country,
+              comments,
+              timestamp: serverTimestamp(),
+            });
+            alert("Form submitted successfully!");
+            form.reset();
+          } catch (error) {
+            console.error("Error adding document: ", error);
+            alert("Failed to submit form.");
+          }
         });
-      })();
+      });
     </script>
 
     <p class="footnote">
