@@ -1445,7 +1445,9 @@
                                         data-class="p-3 px-xl-4 py-xl-3 col-xxl-auto"
                                         data-width="6"
                                         data-hidewcol="0"
-                                        id="tb-megamenu-column-10"
+                                        data-hidesub="0"
+                                        data-label=""
+                                        aria-level="2"
                                       >
                                         <div
                                           class="tb-megamenu-column-inner mega-inner clearfix"
@@ -3585,17 +3587,13 @@
                                                     <div
                                                       class="medium-grey-bg p-3 rounded-4"
                                                     >
-                                                      <!-- data-src="https://www2.ttec.com/l/19832/2017-03-01/2vflhkv" -->
                                                       <iframe
+                                                        id="contactForm"
                                                         allowtransparency="true"
                                                         frameborder="0"
                                                         height="760"
                                                         src="/form.html"
-                                                        style="
-                                                          border: 0px
-                                                            currentColor;
-                                                          border-image: none;
-                                                        "
+                                                        style="border: 0px currentColor; border-image: none;"
                                                         title="Contact us form"
                                                         type="text/html"
                                                         width="100%"
@@ -3644,6 +3642,133 @@
                                                 <!--
 <div class="viewsreference--view-title">
     Related Resources | Most Recently Added
+</div>
+```
+</div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </article>
+                      </div>
+                    </div>
+                  </section>
+                </main>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add this modal markup with additional classes and styling -->
+          <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content rounded-4 border-0">
+                <div class="modal-header bg-dark-steel text-white border-0">
+                  <h5 class="modal-title fs-4" id="successModalLabel">Thank You!</h5>
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                  <p class="fs-5 mb-3">You have successfully sent your data. Our team will reach out to you soon.</p>
+                  <p class="fs-5 mb-0">In the meantime, you can chat with us here.</p>
+                </div>
+                <div class="modal-footer border-0 justify-content-center">
+                  <button type="button" class="btn btn-outline-secondary btn-pill px-4" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary btn-pill px-4" onclick="openChat()">Start Chat</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <style>
+            /* Custom styles for the success modal */
+            #successModal .modal-content {
+              box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+            }
+
+            #successModal .modal-header {
+              padding: 1.5rem 2rem;
+            }
+
+            #successModal .btn-pill {
+              border-radius: 50rem;
+            }
+
+            #successModal .btn-primary {
+              background-color: #0056b3;
+              border-color: #0056b3;
+            }
+
+            #successModal .btn-primary:hover {
+              background-color: #004494;
+              border-color: #004494;
+            }
+
+            #successModal .btn-outline-secondary {
+              color: #6c757d;
+              border-color: #6c757d;
+            }
+
+            #successModal .btn-outline-secondary:hover {
+              color: #fff;
+              background-color: #6c757d;
+              border-color: #6c757d;
+            }
+
+            .bg-dark-steel {
+              background-color: #2c3e50;
+            }
+          </style>
+
+          <script>
+            // Add this script at the end of the body or in a separate JS file
+            document.getElementById('contactForm').addEventListener('load', function() {
+              this.contentWindow.addEventListener('submit', function(event) {
+                event.preventDefault();
+                // Simulate form submission (replace this with actual form submission logic)
+                setTimeout(function() {
+                  var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                  successModal.show();
+                }, 1000);
+              });
+            });
+
+            function openChat() {
+              // Redirect to the Microsoft Teams chat link
+              window.location.href = 'https://teams.live.com/l/invite/FEA6n1thMIi3wRmoAg';
+            }
+          </script>
+
+          <style>
+            .quick-chat-button {
+              position: fixed;
+              bottom: 20px;
+              right: 20px;
+              z-index: 1000;
+            }
+          </style>
+
+          <button class="btn btn-primary btn-pill quick-chat-button" onclick="openQuickChat()">
+            Quick Chat
+          </button>
+
+          <script>
+            function openQuickChat() {
+              window.location.href = 'https://teams.live.com/l/invite/FEA6n1thMIi3wRmoAg';
+            }
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 -->
                                               </div>

@@ -1427,11 +1427,11 @@
               comments,
               timestamp: serverTimestamp(),
             });
-            alert("Form submitted successfully!");
+            console.log("Form submitted successfully!");
             form.reset();
           } catch (error) {
             console.error("Error adding document: ", error);
-            alert("Failed to submit form.");
+            console.log("Failed to submit form.");
           }
         });
       });
