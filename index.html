@@ -3780,7 +3780,43 @@
                                                   }
                                                 </style>
 
-                                               document.getElementById('contactForm')                                              </div>
+                                               document.getElementById('contactForm')         <script>
+            // Add this script at the end of the body or in a separate JS file
+            document.getElementById('contactForm').addEventListener('load', function() {
+              this.contentWindow.addEventListener('submit', function(event) {
+                event.preventDefault();
+                // Simulate form submission (replace this with actual form submission logic)
+                setTimeout(function() {
+                  var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                  successModal.show();
+                }, 1000);
+              });
+            });
+
+            function openChat() {
+              // Redirect to the Microsoft Teams chat link
+              window.location.href = 'https://teams.live.com/l/invite/FEA6n1thMIi3wRmoAg';
+            }
+          </script>
+
+          <style>
+            .quick-chat-button {
+              position: fixed;
+              bottom: 20px;
+              right: 20px;
+              z-index: 1000;
+            }
+          </style>
+
+          <button class="btn btn-primary btn-pill quick-chat-button" onclick="openQuickChat()">
+            Quick Chat
+          </button>
+
+          <script>
+            function openQuickChat() {
+              window.location.href = 'https://teams.live.com/l/invite/FEA6n1thMIi3wRmoAg';
+            }
+          </script>                                            </div>
                                             </div>
                                           </div>
                                         </div>
